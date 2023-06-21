@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import { Badge } from 'UI/Badge';
 import { Card } from 'UI/Card';
 import { Stack } from 'UI/Stack';
+// import { useDispatch } from 'react-redux';
+// import {}
 
 const JobPosition = ({
   id,
@@ -17,7 +19,10 @@ const JobPosition = ({
   location,
   languages,
   tools,
+  handleAddFilter,
 }) => {
+  // const dispatch = useDispatch();
+
   const badges = [].concat(role, level, ...languages, ...tools);
 
   return (
@@ -35,45 +40,45 @@ const JobPosition = ({
               {(isNew || featured) && (
                 <Stack>
                   {isNew && (
-                    <Badge variant="rounded" colorScheme="primary">
+                    <Badge
+                      variant='rounded'
+                      colorScheme='primary'>
                       NEW!
                     </Badge>
                   )}
                   {featured && (
-                    <Badge variant="rounded" colorScheme="dark">
+                    <Badge
+                      variant='rounded'
+                      colorScheme='dark'>
                       FEATURED
                     </Badge>
                   )}
                 </Stack>
               )}
             </div>
-            <h2 className='job-position-title'>
-              {position}
-            </h2>
+            <h2 className='job-position-title'>{position}</h2>
             <Stack>
-              <div className='job-position-meta'>
-                {postedAt}
-              </div>
-              <div className='job-position-meta'>
-                {contract}
-              </div>
-              <div className='job-position-meta'>
-                {location}
-              </div>
+              <div className='job-position-meta'>{postedAt}</div>
+              <div className='job-position-meta'>{contract}</div>
+              <div className='job-position-meta'>{location}</div>
             </Stack>
           </div>
         </div>
         <Stack>
-          {badges.map(item => (
-            <Badge key={item}>{item}</Badge>
+          {badges.map((item) => (
+            <Badge
+              key={item}
+              onClick={() => handleAddFilter(item)}>
+              {item}
+            </Badge>
           ))}
         </Stack>
       </div>
     </Card>
-  )
-}
+  );
+};
 
-export {JobPosition};
+export { JobPosition };
 
 JobPosition.propTypes = {
   id: PropTypes.number,
@@ -89,4 +94,5 @@ JobPosition.propTypes = {
   location: PropTypes.string,
   languages: PropTypes.arrayOf(PropTypes.string),
   tools: PropTypes.arrayOf(PropTypes.string),
+  handleAddFilter: PropTypes.func,
 };
