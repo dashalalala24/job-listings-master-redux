@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import { Badge } from 'UI/Badge';
 import { Card } from 'UI/Card';
 import { Stack } from 'UI/Stack';
-// import { useDispatch } from 'react-redux';
-// import {}
 
 const JobPosition = ({
   id,
@@ -21,8 +19,6 @@ const JobPosition = ({
   tools,
   handleAddFilter,
 }) => {
-  // const dispatch = useDispatch();
-
   const badges = [].concat(role, level, ...languages, ...tools);
 
   return (

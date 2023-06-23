@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { FilterPanel } from 'components/FilterPanel';
 import { JobList } from 'components/JobList';
 import { TheHeader } from 'components/TheHeader';
-import { addPositions } from 'store/positions/position-actions';
+import { addPositions } from './redux/slices/positions-slice';
 
 import data from './mock/data.json';
 
@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     dispatch(addPositions(data));
-  });
+  }, []);
 
   return (
     <>
